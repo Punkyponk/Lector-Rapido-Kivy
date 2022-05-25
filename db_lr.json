@@ -1,0 +1,8 @@
+{
+    "HOST" : "localhost",
+    "PORT" : 3306,
+    "DBNAME" : "LibroKivy",
+    "DBUSER" : "HADES",
+    "DBPASS" : "vivaelhentai"
+    
+}
