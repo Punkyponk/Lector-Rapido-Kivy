@@ -185,7 +185,7 @@ class LectorRapidoKivy(Screen):
                 reporte.rect(100,582-160*casilla,412,110,stroke=1,fill=0)
                 reporte.drawString(480,677-160*casilla,str(datos[0]))
                 reporte.drawString(115,677-160*casilla,
-                    "Página a retomar:  "+str(datos[1])
+                    "Página a retomar:  "+str(datos[1])+" / "+str(self.total_paginas)
                 )
                 reporte.drawString(115,657-160*casilla,
                     "Pulsaciones del botón \"Regresar\":  "+str(datos[2])
