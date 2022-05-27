@@ -4,6 +4,5 @@
     "DBNAME" : "LibroKivy",
     "DBUSER" : "HADES",
     "DBPASS" : "vivaelhentai",
-    "RPT_PAGINA" : 1,
-    "RPT_CASILLA" : 1
+    "NOM_LIBRO" : ""
 }

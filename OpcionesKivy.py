@@ -1,5 +1,6 @@
 import json
 import pymysql.cursors
+#
 from kivy.uix.screenmanager import Screen
 from kivy.uix.button import Button
 from ColorLabel import ColorLabel
@@ -51,7 +52,7 @@ class OpcionesKivy(Screen):
                 INSERT INTO libro
                 VALUES (null,%s)
             """
-            #Añadir lineas del libro en .txt como registros
+            #Añadir lineas del libro en .txt como registros en "libro"
             with open(self.txi_ruta.text) as libro_txt:
                 for linea in libro_txt:
                     #Se ignoran las líneas vacías
@@ -61,10 +62,11 @@ class OpcionesKivy(Screen):
             self.connection.commit()
             self.lbl_opc.text = "Se ha cargado exitosamente el libro a la BD"
             MiCursor.close()
-            #Para el reporte de un nuevo libro, restablecer a 1
+            #Para el reporte de un nuevo libro, guardar el titulo
             with open("db_lr.json", 'w') as jsonfile:
-                self.Conf['RPT_PAGINA'] = 1
-                self.Conf['RPT_CASILLA'] = 1
+                self.Conf['NOM_LIBRO'] = self.txi_ruta.text[
+                    0:self.txi_ruta.text.find(".txt")
+                ]
                 json.dump(self.Conf, jsonfile)
         else:
             print("ERROR: No se puedo realizar una conexión a la BD")
