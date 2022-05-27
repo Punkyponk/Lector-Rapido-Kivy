@@ -3,6 +3,7 @@
     "PORT" : 3306,
     "DBNAME" : "LibroKivy",
     "DBUSER" : "HADES",
-    "DBPASS" : "vivaelhentai"
-    
+    "DBPASS" : "vivaelhentai",
+    "RPT_PAGINA" : 1,
+    "RPT_CASILLA" : 1
 }
