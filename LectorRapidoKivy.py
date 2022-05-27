@@ -30,8 +30,8 @@ class LectorRapidoKivy(Screen):
             #El registro más actual
         SQL = """
             SELECT * FROM contador
-            WHERE id_contador = (
-                SELECT MAX(id_contador) FROM contador
+            WHERE fin_lectura = (
+                SELECT MAX(fin_lectura) FROM contador
             )
         """
         MiCursor.execute(SQL)
@@ -145,8 +145,8 @@ class LectorRapidoKivy(Screen):
             MiCursor = self.connection.cursor()
             SQL = """
                 SELECT * FROM contador
-                WHERE id_contador = (
-                    SELECT MAX(id_contador) FROM contador
+                WHERE fin_lectura = (
+                    SELECT MAX(fin_lectura) FROM contador
                 )
             """
             MiCursor.execute(SQL)
@@ -165,7 +165,10 @@ class LectorRapidoKivy(Screen):
                 self.cont_continuar,fin_lectura]
             )
             self.connection.commit()
-            #Crear el reporte en .pdf [612, 792]
+            self.cont_regresar = 0
+            self.cont_continuar = 0
+            #Crear el reporte en .pdf
+            #Letter=[612, 792]
             reporte = canvas.Canvas(f"Reporte@{self.Conf['NOM_LIBRO']}.pdf")
             SQL = 'SELECT * FROM contador'
             MiCursor.execute(SQL)
@@ -180,18 +183,18 @@ class LectorRapidoKivy(Screen):
                     break
                 #Casilla con datos
                 reporte.rect(100,582-160*casilla,412,110,stroke=1,fill=0)
-                reporte.drawString(500,677-160*casilla,str(datos[0]))
+                reporte.drawString(480,677-160*casilla,str(datos[0]))
                 reporte.drawString(115,677-160*casilla,
-                    "Página a retomar: "+str(datos[1])
+                    "Página a retomar:  "+str(datos[1])
                 )
                 reporte.drawString(115,657-160*casilla,
-                    "Pulsaciones del botón \"Regresar\": "+str(datos[2])
+                    "Pulsaciones del botón \"Regresar\":  "+str(datos[2])
                 )
                 reporte.drawString(115,637-160*casilla,
-                    "Pulsaciones del botón \"Continuar\": "+str(datos[3])
+                    "Pulsaciones del botón \"Continuar\":  "+str(datos[3])
                 )
                 reporte.drawString(115,617-160*casilla,
-                    "Fecha y hora del fin de lectura: "+str(datos[4])
+                    "Fecha y hora del fin de lectura:  "+str(datos[4])
                 )
                 #Si llegamos a la última casilla
                 if casilla == 3:
