@@ -1,8 +1,1 @@
-{
-    "HOST" : "localhost",
-    "PORT" : 3306,
-    "DBNAME" : "LibroKivy",
-    "DBUSER" : "HADES",
-    "DBPASS" : "vivaelhentai",
-    "NOM_LIBRO" : ""
-}
+{"HOST": "localhost", "PORT": 3306, "DBNAME": "LibroKivy", "DBUSER": "HADES", "DBPASS": "vivaelhentai", "NOM_LIBRO": "El rat\u00f3n de campo y el rat\u00f3n de ciudad"}

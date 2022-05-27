@@ -47,17 +47,19 @@ class OpcionesKivy(Screen):
             MiCursor.execute(SQL)
             SQL = 'DELETE FROM libro'
             MiCursor.execute(SQL)
-            #Se ignora el atributo clave auto-incrementable con "null"
+            self.connection.commit()
             SQL = """
                 INSERT INTO libro
-                VALUES (null,%s)
+                VALUES (%s,%s)
             """
             #Añadir lineas del libro en .txt como registros en "libro"
+            num_registro = 1
             with open(self.txi_ruta.text) as libro_txt:
                 for linea in libro_txt:
                     #Se ignoran las líneas vacías
                     if (linea != "") or (linea != " "):
-                        MiCursor.execute(SQL,linea)
+                        MiCursor.execute(SQL,[num_registro,linea])
+                    num_registro += 1
             #Realizar cambios
             self.connection.commit()
             self.lbl_opc.text = "Se ha cargado exitosamente el libro a la BD"
